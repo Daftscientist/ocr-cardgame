@@ -1,3 +1,7 @@
+
+// This file is me trying but failing to port my existing code into more readable code so i can document it better further down the line.
+
+
 const CARD_TYPES = ['red', 'black', 'yellow']; // Array of card types
 
 const CARD_TYPES_EXPANDED = [
@@ -40,3 +44,8 @@ while (!cards === undefined || !cards.length == 0) {
     // Need to do the rest of the code and work out the logic to run though each selected card
 
 } // Runs enclosed code while the cards array is not empty.
+
+
+
+
+
