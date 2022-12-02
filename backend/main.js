@@ -11,6 +11,9 @@ import CreateUser from './routes/user/create.js';
 // Creating a new express app
 const app = express();
 
+// Fixes issue with not reading body
+app.use(express.json())
+
 // Set up cors (cross-origin resource sharing)
 app.use(
   cors(
