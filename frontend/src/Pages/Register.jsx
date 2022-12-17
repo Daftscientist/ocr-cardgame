@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import HeaderImage from 'Static/header.png'
 import { Link } from 'react-router-dom';
+import { Formik, Field, Form } from "formik";
+import { useEffect, useState  } from 'react';
 
 const Header = styled.section`
     width: 100%;
@@ -30,6 +32,8 @@ const Page = styled.div`
 `;
 
 function Register() {
+    const [formData, setFormData] = useState({});
+
     return (
         <Page>
             <Header>
@@ -44,52 +48,48 @@ function Register() {
                                 Or{' '}
                                 <Link to={"/"} className="font-bold text-[#feb0bd]">
                                     return to the main page
+                                    <br></br>
+                                    {formData.password}
                                 </Link>
                                 </p>
                             </div>
-                            <form className="mt-3 space-y-2" action="#" method="POST">
-                                <input type="hidden" name="remember" defaultValue="true" />
-                                <div className="-space-y-px rounded-md shadow-sm">
-                                <div>
-                                    <label htmlFor="email-address" className="sr-only">
-                                    Email address
-                                    </label>
-                                    <input
-                                    id="email-address"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
-                                    required
+                            <Formik
+                                initialValues={{ email: "", password: "" }}
+                                onSubmit={async (values) => {
+                                await new Promise((resolve) => setTimeout(resolve, 500));
+                                setFormData(values);
+                                }}
+                            >
+                                <Form className="mt-3 space-y-2">
+                                    <div className="-space-y-px rounded-md shadow-sm">
+                                        <div>
+                                            <label htmlFor="email-address" className="sr-only">
+                                                Email address
+                                            </label>
+                                            <Field name="email" type="email" required
                                     className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    placeholder="Email address"
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="password" className="sr-only">
-                                    Password
-                                    </label>
-                                    <input
-                                    id="password"
-                                    name="password"
-                                    type="password"
-                                    autoComplete="current-password"
-                                    required
+                                    placeholder="Email address" />
+                                        </div>
+                                        <div>
+                                            <label htmlFor="password" className="sr-only">
+                                                Password
+                                            </label>
+                                            <Field name="password" type="password" required
                                     className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                                    placeholder="Password"
-                                    />
-                                </div>
-                                </div>
-
-                                <button
-                                    type="submit"
-                                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                >
-                                    <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    placeholder="Password" />
+                                        </div>
+                                        <div>
+                                            <button className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" type="submit">
+                                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                                     
                                     </span>
                                     Sign in
-                                </button>
-                            </form>
+                                                </button>
+                                        </div>
+                                    </div>
+                                </Form>
+                            </Formik>
+                            
                         </div>
                     </div>
                 </Content>

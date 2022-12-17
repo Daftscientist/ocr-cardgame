@@ -12,7 +12,6 @@ function shuffle(array) {
         [array[currentIndex], array[randomIndex]] = [
             array[randomIndex], array[currentIndex]];
     }
-
     return array;
 }
 
